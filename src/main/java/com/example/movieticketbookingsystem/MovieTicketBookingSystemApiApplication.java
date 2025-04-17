@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MovieTicketBookingSystemApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MovieTicketBookingSystemApiApplication.class, args);
+
+		SpringApplication.run(MovieTicketBookingSystemApiApplication.class, args
+		);
+		System.out.println("hello world");
 	}
 
 }
