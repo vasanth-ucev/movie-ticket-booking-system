@@ -1,6 +1,9 @@
 package com.example.movieticketbookingsystem.controller;
 
+import com.example.movieticketbookingsystem.dto.UserRegistrationRequest;
+import com.example.movieticketbookingsystem.dto.UserResponse;
 import com.example.movieticketbookingsystem.entity.UserDetails;
+import com.example.movieticketbookingsystem.mapper.UserRegistrationMapper;
 import com.example.movieticketbookingsystem.service.UserService;
 import com.example.movieticketbookingsystem.utility.ResponseStructure;
 import com.example.movieticketbookingsystem.utility.StructureResponseBuilder;
@@ -19,12 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
-    @Autowired
+    private final UserRegistrationMapper userRegistrationMapper;
     private StructureResponseBuilder structureResponseBuilder;
     @PostMapping
-    public ResponseEntity<ResponseStructure<UserDetails>> registerUser(@RequestBody UserDetails userDetails) {
-        UserDetails userDetails1 = userService.userRegister(userDetails);
-        return structureResponseBuilder.success(HttpStatus.CREATED,"user registeration succssefully done",userDetails1);
+    public ResponseEntity<ResponseStructure<UserResponse>> registerUser(@RequestBody UserRegistrationRequest userRegistrationRequest) {
+        UserDetails details = userService.userRegister(userRegistrationRequest);
+        return structureResponseBuilder.success(HttpStatus.CREATED,"user registration successfully done",userRegistrationMapper.toUserDetails(details));
     }
 
 
