@@ -1,6 +1,7 @@
 package com.example.movieticketbookingsystem.handler;
 
 import com.example.movieticketbookingsystem.Exception.EmailAlreadyExistException;
+import com.example.movieticketbookingsystem.Exception.EmailNotExistException;
 import com.example.movieticketbookingsystem.utility.ResponseStructure;
 import com.example.movieticketbookingsystem.utility.StructureResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,9 @@ public class ApplicationHandler<T> {
     @ExceptionHandler
     public ResponseEntity<ResponseStructure<T>> handleHttpMessageExeption(HttpMessageNotReadableException ex){
         return structureResponseBuilder.error(HttpStatus.BAD_REQUEST,"invalid user role",null);
+    }
+    @ExceptionHandler
+    public ResponseEntity<ResponseStructure<T>> handleEmailNotExistsException(EmailNotExistException ex){
+        return structureResponseBuilder.error(HttpStatus.NOT_FOUND,ex.getMessage(),null);
     }
 }
