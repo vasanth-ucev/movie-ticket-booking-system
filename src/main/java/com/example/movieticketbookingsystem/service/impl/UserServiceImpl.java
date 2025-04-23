@@ -1,6 +1,7 @@
 package com.example.movieticketbookingsystem.service.impl;
 
 import com.example.movieticketbookingsystem.Exception.EmailAlreadyExistException;
+import com.example.movieticketbookingsystem.Exception.EmailNotExistException;
 import com.example.movieticketbookingsystem.dto.UserRegistrationRequest;
 import com.example.movieticketbookingsystem.dto.UserUpdationRequest;
 import com.example.movieticketbookingsystem.dto.UserUpdationResponse;
@@ -50,6 +51,6 @@ public class UserServiceImpl implements UserService {
             return userUpdationMapper.toUserDetails(userRepository.save(details));
         }
         else
-            throw new EmailNot
+            throw new EmailNotExistException("email is not exists");
     }
 }

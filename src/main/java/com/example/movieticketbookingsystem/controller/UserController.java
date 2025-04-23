@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PutMapping("/user/{email}")
-    public ResponseEntity<ResponseStructure<UserUpdationResponse>> updateUser(@PathVariable String email, UserUpdationRequest userUpdationRequest){
+    public ResponseEntity<ResponseStructure<UserUpdationResponse>> updateUser(@PathVariable String email, @RequestBody UserUpdationRequest userUpdationRequest){
 
         return structureResponseBuilder.success(HttpStatus.OK,"user updation successfully done", userService.updateUser(email,userUpdationRequest));
     }

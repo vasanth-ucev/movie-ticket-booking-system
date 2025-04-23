@@ -4,5 +4,7 @@ import java.time.LocalDate;
 
 public record UserUpdationResponse(String username,
                                    String phoneNumber
-                                    , LocalDate dateOfBirth) {
+                                    , LocalDate dateOfBirth
+                                    ,Long createdAt
+                                    ,Long updatedAt) {
 }

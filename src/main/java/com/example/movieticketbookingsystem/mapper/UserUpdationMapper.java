@@ -28,6 +28,6 @@ public class UserUpdationMapper {
 
     public UserUpdationResponse toUserDetails(UserDetails us){
 
-        return new UserUpdationResponse(us.getUsername(),us.getPhoneNumber(),us.getDateOfBirth());
+        return new UserUpdationResponse(us.getUsername(),us.getPhoneNumber(),us.getDateOfBirth(),us.getCreatedAt(),us.getUpdatedAt());
     }
 }
