@@ -3,6 +3,7 @@ package com.example.movieticketbookingsystem.service.impl;
 import com.example.movieticketbookingsystem.Exception.EmailAlreadyExistException;
 import com.example.movieticketbookingsystem.Exception.EmailNotExistException;
 import com.example.movieticketbookingsystem.dto.UserRegistrationRequest;
+import com.example.movieticketbookingsystem.dto.UserRegistrationResponse;
 import com.example.movieticketbookingsystem.dto.UserUpdationRequest;
 import com.example.movieticketbookingsystem.dto.UserUpdationResponse;
 import com.example.movieticketbookingsystem.entity.TheaterOwner;
@@ -14,8 +15,10 @@ import com.example.movieticketbookingsystem.mapper.UserUpdationMapper;
 import com.example.movieticketbookingsystem.repository.UserRepository;
 import com.example.movieticketbookingsystem.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Optional;
 
 @Service
@@ -52,5 +55,22 @@ public class UserServiceImpl implements UserService {
         }
         else
             throw new EmailNotExistException("email is not exists");
+    }
+
+    @Override
+    public UserRegistrationResponse softDelete(String email) {
+        UserDetails userDetails=userRepository.findByEmail(email);
+        if (userDetails==null) {
+            throw new EmailNotExistException("User mail not exists");
+
+        }
+        else if(userDetails.getIsDelete()){
+            throw  new EmailAlreadyExistException("email already deleted");
+        }
+        else{
+            userDetails.setIsDelete(true);
+            userDetails.setDeleteAt(Instant.now());
+            return userRegistrationMapper.toUserDetails(userRepository.save(userDetails));
+        }
     }
 }
