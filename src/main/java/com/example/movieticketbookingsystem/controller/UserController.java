@@ -35,6 +35,11 @@ public class UserController {
         return structureResponseBuilder.success(HttpStatus.OK,"user updation successfully done", userService.updateUser(email,userUpdationRequest));
     }
 
+    @DeleteMapping ("user/{email}")
+    public ResponseEntity<ResponseStructure<UserRegistrationResponse>> softDelete(@PathVariable String email){
+        return structureResponseBuilder.success(HttpStatus.OK,"user inActive successfully done",userService.softDelete(email));
+    }
+
     
 
 
