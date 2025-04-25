@@ -1,9 +1,11 @@
 package com.example.movieticketbookingsystem.repository;
 
+import com.example.movieticketbookingsystem.entity.Theater;
 import com.example.movieticketbookingsystem.entity.UserDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<UserDetails,String> {
-    boolean existsByEmail(String email);
-    UserDetails findByEmail(String email);
+import java.util.Optional;
+
+public interface TheaterRepository extends JpaRepository<Theater,String> {
+
 }

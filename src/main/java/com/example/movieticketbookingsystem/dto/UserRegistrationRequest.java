@@ -6,12 +6,12 @@ import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
 public record UserRegistrationRequest(
-        @NotNull @Min(4) @Max(8)
+        @NotNull
         String username,
         @NotNull
         @Email(message = "Email should be validate")
         String email,
-        @NotNull @Min(value = 6,message = "password should have min length of 6")
+        @NotNull
         String password,
         @NotNull(message = "user role is required")
         Role role,
