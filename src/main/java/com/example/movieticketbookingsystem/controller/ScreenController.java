@@ -9,6 +9,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @AllArgsConstructor
@@ -16,8 +19,8 @@ public class ScreenController {
 
     private ScreenService screenService;
     private StructureResponseBuilder structureResponseBuilder;
-
-    public ResponseEntity<ResponseStructure<ScreenResponse>> createScreen(ScreenRequest screenRequest,String theaterId){
+    @PostMapping("/screen")
+    public ResponseEntity<ResponseStructure<ScreenResponse>> createScreen(@RequestBody ScreenRequest screenRequest, @PathVariable String theaterId){
         return structureResponseBuilder.success(HttpStatus.OK,"screen successfully created", screenService.createScreen(screenRequest,theaterId));
     }
 
