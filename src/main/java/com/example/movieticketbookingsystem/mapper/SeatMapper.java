@@ -1,11 +1,13 @@
 package com.example.movieticketbookingsystem.mapper;
 
+import com.example.movieticketbookingsystem.dto.SeatResponse;
 import com.example.movieticketbookingsystem.entity.Screen;
 import com.example.movieticketbookingsystem.entity.Seat;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class SeatMapper {
     long now = System.currentTimeMillis();
 
@@ -27,5 +29,16 @@ public class SeatMapper {
             }
         }
         return seatList;
+    }
+
+    public List<SeatResponse> toSeatResponseList(List<Seat> seats){
+        List<SeatResponse> seatResponseList = new ArrayList<>();
+        for (Seat seat : seats){
+            seatResponseList.add(SeatResponse.builder()
+                    .seatId(seat.getSeatId())
+                    .seatName(seat.getSeatName())
+                    .build());
+        }
+        return seatResponseList;
     }
 }
