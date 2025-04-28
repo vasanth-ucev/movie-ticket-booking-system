@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @AllArgsConstructor
@@ -19,8 +20,8 @@ public class ScreenController {
 
     private ScreenService screenService;
     private StructureResponseBuilder structureResponseBuilder;
-    @PostMapping("/screen")
-    public ResponseEntity<ResponseStructure<ScreenResponse>> createScreen(@RequestBody ScreenRequest screenRequest, @PathVariable String theaterId){
+    @PostMapping("/create-screen")
+    public ResponseEntity<ResponseStructure<ScreenResponse>> createScreen(@RequestBody ScreenRequest screenRequest, @RequestParam String theaterId){
         return structureResponseBuilder.success(HttpStatus.OK,"screen successfully created", screenService.createScreen(screenRequest,theaterId));
     }
 
