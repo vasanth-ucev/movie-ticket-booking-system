@@ -22,7 +22,6 @@ public class UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @Column(length = 10)
     private String phoneNumber;
     private LocalDate dateOfBirth;
     private Long createdAt;

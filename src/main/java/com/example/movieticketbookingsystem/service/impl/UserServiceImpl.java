@@ -44,33 +44,4 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
-    public UserUpdationResponse updateUser(String email, UserUpdationRequest userRequest) {
-        if (userRepository.existsByEmail(email)) {
-            UserDetails details=userRepository.findByEmail(email);
-            details.setUsername(userRequest.username());
-            details.setPhoneNumber(userRequest.phoneNumber());
-            details.setDateOfBirth(userRequest.dateOfBirth());
-            return userUpdationMapper.toUserDetails(userRepository.save(details));
-        }
-        else
-            throw new EmailNotExistException("email is not exists");
-    }
-
-    @Override
-    public UserRegistrationResponse softDelete(String email) {
-        UserDetails userDetails=userRepository.findByEmail(email);
-        if (userDetails==null) {
-            throw new EmailNotExistException("User mail not exists");
-
-        }
-        else if(userDetails.getIsDelete()){
-            throw  new EmailAlreadyExistException("email already deleted");
-        }
-        else{
-            userDetails.setIsDelete(true);
-            userDetails.setDeleteAt(Instant.now());
-            return userRegistrationMapper.toUserDetails(userRepository.save(userDetails));
-        }
-    }
 }

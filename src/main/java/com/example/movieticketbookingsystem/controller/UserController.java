@@ -10,10 +10,11 @@ import com.example.movieticketbookingsystem.mapper.UserUpdationMapper;
 import com.example.movieticketbookingsystem.service.UserService;
 import com.example.movieticketbookingsystem.utility.ResponseStructure;
 import com.example.movieticketbookingsystem.utility.StructureResponseBuilder;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @AllArgsConstructor
@@ -23,8 +24,6 @@ public class UserController {
     private final UserUpdationMapper userUpdationMapper;
     private StructureResponseBuilder structureResponseBuilder;
 
-    @PostMapping("/register")
-    public ResponseEntity<ResponseStructure<UserRegistrationResponse>> registerUser(@RequestBody UserRegistrationRequest userRegistrationRequest) {
         UserDetails details = userService.userRegister(userRegistrationRequest);
         return structureResponseBuilder.success(HttpStatus.CREATED,"user registration successfully done",userRegistrationMapper.toUserDetails(details));
     }
