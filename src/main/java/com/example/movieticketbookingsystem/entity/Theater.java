@@ -7,6 +7,8 @@ import lombok.*;
 @Setter
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Theater {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

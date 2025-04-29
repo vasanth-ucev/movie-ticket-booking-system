@@ -20,8 +20,10 @@ public class ScreenController {
 
     private ScreenService screenService;
     private StructureResponseBuilder structureResponseBuilder;
+
     @PostMapping("/create-screen")
     public ResponseEntity<ResponseStructure<ScreenResponse>> createScreen(@RequestBody ScreenRequest screenRequest, @RequestParam String theaterId){
+        System.out.println("Start");
         return structureResponseBuilder.success(HttpStatus.OK,"screen successfully created", screenService.createScreen(screenRequest,theaterId));
     }
 

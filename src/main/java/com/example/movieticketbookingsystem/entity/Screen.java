@@ -10,6 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Screen {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
