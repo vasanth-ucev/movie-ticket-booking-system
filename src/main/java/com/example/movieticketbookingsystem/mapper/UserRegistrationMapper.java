@@ -1,7 +1,7 @@
 package com.example.movieticketbookingsystem.mapper;
 
 import com.example.movieticketbookingsystem.dto.UserRegistrationRequest;
-import com.example.movieticketbookingsystem.dto.UserResponse;
+import com.example.movieticketbookingsystem.dto.UserRegistrationResponse;
 import com.example.movieticketbookingsystem.entity.TheaterOwner;
 import com.example.movieticketbookingsystem.entity.User;
 import com.example.movieticketbookingsystem.entity.UserDetails;
@@ -28,8 +28,8 @@ public class UserRegistrationMapper {
         return theaterOwner;
     }
 
-    public UserResponse toUserDetails(UserDetails us){
+    public UserRegistrationResponse toUserDetails(UserDetails us){
 
-        return new UserResponse(us.getUsername(),us.getEmail(),us.getPhoneNumber(),us.getRole(),us.getDateOfBirth());
+        return new UserRegistrationResponse(us.getUsername(),us.getEmail(),us.getPhoneNumber(),us.getRole(),us.getDateOfBirth());
     }
 }

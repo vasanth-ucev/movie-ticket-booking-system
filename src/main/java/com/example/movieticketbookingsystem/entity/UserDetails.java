@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.time.LocalDate;
 
 @Setter
@@ -23,5 +24,8 @@ public class UserDetails {
     private Role role;
     private String phoneNumber;
     private LocalDate dateOfBirth;
-    private Long createdAt, updatedAt;
+    private Long createdAt;
+    private Long updatedAt;
+    private Boolean isDelete=false;
+    private Instant deleteAt;
 }

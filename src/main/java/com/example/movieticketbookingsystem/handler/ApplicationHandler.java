@@ -1,8 +1,7 @@
 package com.example.movieticketbookingsystem.handler;
 
 import com.example.movieticketbookingsystem.Exception.EmailAlreadyExistException;
-import com.example.movieticketbookingsystem.Exception.TheaterNotExitsException;
-import com.example.movieticketbookingsystem.utility.ErrorStructure;
+
 import com.example.movieticketbookingsystem.utility.ResponseStructure;
 import com.example.movieticketbookingsystem.utility.StructureResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +26,7 @@ public class ApplicationHandler<T> {
         return structureResponseBuilder.error(HttpStatus.BAD_REQUEST,"invalid user role",null);
     }
     @ExceptionHandler
-    public ResponseEntity<ErrorStructure<T>> handleTheaterNotExitsException(TheaterNotExitsException ex){
-        return structureResponseBuilder.error(HttpStatus.NOT_FOUND,ex.getMessage(),null);
-    }
-    
-    @ExceptionHandler
-    public ResponseEntity<ErrorStructure<Object>> handleNoSuchElementException(NoSuchElementException ex){
+
         return structureResponseBuilder.error(HttpStatus.NOT_FOUND,ex.getMessage(),null);
     }
 }
